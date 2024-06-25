@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stream Overlay Frontend</title>
+    </head>
+    <body>
+        <h1>WebSocket Test</h1>
+        <button onclick="sendMessage()">Send Message</button>
+        <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+        <script>
+            const socket = io.connect("http://localhost:5000");
+
+            socket.on('connect', () => {
+                console.log("Connected to server");
+            });
+
+            socket.on("response", (data) => {
+                console.log(data);
+            });
+
+            function sendMessage() {
+                socket.send("Hello, server!");
+            }
+        </script>
+    </body>
+</html>
